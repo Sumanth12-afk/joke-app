@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jokes-frontend
+  labels:
+    app: jokes-frontend
 spec:
   replicas: 1
   selector:
@@ -13,8 +15,27 @@ spec:
         app: jokes-frontend
     spec:
       containers:
-        - name: jokes-frontend
-          image: jokes-frontend
-          imagePullPolicy: Never
-          ports:
-            - containerPort: 3000
+      - name: jokes-frontend
+        image: jokes-frontend
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "250m"
+            memory: "256Mi"

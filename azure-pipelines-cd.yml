@@ -1,0 +1,14 @@
+trigger: none
+
+pool:
+  name: Default
+
+stages:
+- stage: Deploy
+  jobs:
+  - job: DeployToMinikube
+    displayName: "Deploy to Minikube"
+    steps:
+    - script: |
+        kubectl apply -f k8s/
+      displayName: "Apply K8s Manifests"

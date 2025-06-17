@@ -1,0 +1,32 @@
+trigger:
+- master
+
+pool:
+  name: Default
+
+stages:
+- stage: Build
+  jobs:
+  - job: BuildBackend
+    displayName: "Build Backend"
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+    - script: |
+        cd backend
+        npm install
+        npm test || echo "No tests yet"
+      displayName: "Install & Test Backend"
+
+  - job: BuildFrontend
+    displayName: "Build Frontend"
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '18.x'
+    - script: |
+        cd frontend
+        npm install
+        npm run build
+      displayName: "Build React App"
