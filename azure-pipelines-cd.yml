@@ -1,3 +1,9 @@
+resources:
+  pipelines:
+    - pipeline: buildPipeline            # Reference name (any name)
+      source: azure-pipelines-ci         # 👈 Use your CI pipeline's name (NOT filename!)
+      trigger: true                      # 👈 Auto-trigger when CI completes
+
 trigger: none
 
 pool:
@@ -5,10 +11,11 @@ pool:
 
 stages:
 - stage: Deploy
+  displayName: "Deploy to Minikube"
   jobs:
   - job: DeployToMinikube
-    displayName: "Deploy to Minikube"
+    displayName: "Minikube Deployment Job"
     steps:
     - script: |
         kubectl apply -f k8s/
-      displayName: "Apply K8s Manifests"
+      displayName: "Apply Kubernetes Manifests"
