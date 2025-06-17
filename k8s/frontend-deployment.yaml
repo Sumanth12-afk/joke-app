@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jokes-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jokes-frontend
+  template:
+    metadata:
+      labels:
+        app: jokes-frontend
+    spec:
+      containers:
+      - name: jokes-frontend
+        image: jokes-frontend:latest
+        ports:
+        - containerPort: 3000
