@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --accent-general: #60a5fa; /* Softer blue for general */
+  --accent-dad: #f472b6; /* Warm pink for dad jokes */
+  --accent-programming: #34d399; /* Vibrant green for programming */
+  --light-bg: #f9fafb; /* Clean off-white for light theme */
+  --light-card-bg: #ffffff;
+  --dark-bg: #111827; /* Deep blue-gray for dark theme */
+  --dark-card-bg: #1f2937;
+  --font-color-light: #1f2937; /* Dark gray for light theme text */
+  --font-color-dark: #e5e7eb; /* Light gray for dark theme text */
+  --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --shadow-dark: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 80px 20px;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.app.light {
+  background: linear-gradient(135deg, var(--light-bg), #e5e7eb);
+  color: var(--font-color-light);
+}
+
+.app.dark {
+  background: linear-gradient(135deg, var(--dark-bg), #374151);
+  color: var(--font-color-dark);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 48px;
+}
+
+.header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header h1 .emoji {
+  font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+  font-size: 1em;
+  background: none;
+  color: inherit;
+  text-shadow: none;
+}
+
+.header h1 .title-text {
+  background: linear-gradient(90deg, var(--accent-general), var(--accent-dad));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+  padding: 12px 24px;
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: 0.4s;
+}
+
+.theme-toggle:hover::before {
+  left: 100%;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-light);
+}
+
+.app.dark .theme-toggle:hover {
+  box-shadow: var(--shadow-dark);
+}
+
+.radio-group {
+  margin: 32px 0;
+  text-align: center;
+}
+
+.radios {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin: 24px 0;
+}
+
+.radio-option {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: inherit;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.radio-option input {
+  margin-right: 10px;
+  accent-color: var(--accent-programming);
+}
+
+.radio-option:hover {
+  color: var(--accent-programming);
+}
+
+.app.light button,
+.app.light .copy-btn {
+  background: linear-gradient(45deg, var(--accent-dad), var(--accent-general));
+  color: white;
+  border: none;
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: var(--shadow-light);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.app.light button:hover,
+.app.light .copy-btn:hover {
+  background: linear-gradient(45deg, var(--accent-general), var(--accent-dad));
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark button,
+.app.dark .copy-btn {
+  background: transparent;
+  border: 2px solid var(--accent-programming);
+  color: var(--accent-programming);
+  padding: 16px 32px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.app.dark button:hover,
+.app.dark .copy-btn:hover {
+  background: var(--accent-programming);
+  color: var(--dark-bg);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: var(--shadow-dark);
+}
+
+.joke-box {
+  background: var(--light-card-bg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 48px;
+  border-radius: 24px;
+  margin-top: 32px;
+  min-height: 180px;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  box-shadow: var(--shadow-light);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.app.dark .joke-box {
+  background: var(--dark-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-dark);
+}
+
+.joke-box.general { border-left: 8px solid var(--accent-general); }
+.joke-box.dad { border-left: 8px solid var(--accent-dad); }
+.joke-box.programming { border-left: 8px solid var(--accent-programming); }
+
+.joke-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.app.dark .joke-box:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.joke-text {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+.copy-btn {
+  margin-top: 20px;
+}
+
+.copied-msg {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--accent-programming);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.loading-spinner {
+  margin: 20px auto;
+  width: 48px;
+  height: 48px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid var(--accent-programming);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.error {
+  color: #ef4444;
+  font-weight: 600;
+  font-size: 1.15rem;
+}
+
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.75rem;
+  }
+  .joke-box {
+    padding: 32px;
+    margin-top: 24px;
+  }
+  .radios {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .theme-toggle {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  .radio-option {
+    font-size: 1rem;
+  }
+  .joke-text {
+    font-size: 1.1rem;
+  }
+}
