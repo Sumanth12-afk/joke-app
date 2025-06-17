@@ -13,7 +13,8 @@ spec:
         app: jokes-frontend
     spec:
       containers:
-      - name: jokes-frontend
-        image: jokes-frontend:latest
-        ports:
-        - containerPort: 3000
+        - name: jokes-frontend
+          image: jokes-frontend
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
