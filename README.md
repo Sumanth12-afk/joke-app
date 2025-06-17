@@ -132,8 +132,6 @@ This ensures CD runs automatically after a successful CI pipeline.
 
 - Azure DevOps Pipeline Runs
 - Project UI (React App)
-- Kubernetes Dashboard
-- Minikube NodePort Exposure
 
 Available in the `screenshots/` directory.
 
