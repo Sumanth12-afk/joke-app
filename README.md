@@ -19,7 +19,7 @@ A full-stack joke web application designed to showcase a complete DevOps pipelin
 
 | Layer        | Tool/Framework            |
 |--------------|---------------------------|
-| Frontend     | React (Create React App)  |
+| Frontend     | React (React App)  |
 | Backend      | Node.js (Express.js)      |
 | Version Control | Git + Azure Repos & GitHub |
 | CI/CD        | Azure DevOps Pipelines    |
